@@ -7,7 +7,7 @@ from flask_session import Session
 from ..tools.decorators import confirmed_required
 import socket
 
-UDP_PC = "192.168.43.84"
+UDP_PC = "127.0.0.1" #"192.168.43.84"
 UDP_PC_R = "10.22.29.2"
 UDP_PORT = 2390
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP   
@@ -166,7 +166,7 @@ def dashboard():
     s.sendto(bytes("code_deb",'utf-8'),(UDP_PC,UDP_PORT))
     for code in codes:
         print(code[2])
-        s.sendto(bytes(str(code[0])+" "+str(code[1])+ " "+code[2],'utf-8'),(UDP_PC,UDP_PORT))
+        s.sendto(bytes(str(code[0])+" "+str(code[1])+ " "+code[2]+ " " + code[3],'utf-8'),(UDP_PC,UDP_PORT))
     s.sendto(bytes("code_fin",'utf-8'),(UDP_PC,UDP_PORT))
     if request.method == 'POST':
         actions = request.form

@@ -157,10 +157,10 @@ def codes_list():
     connection = sqlite3.connect('db/BDD_Velos.db')
     cur = connection.cursor()
     cur.row_factory = sqlite3.Row
-    cur.execute("SELECT id_velo,code,date_deb from Reservations")
+    cur.execute("SELECT id_velo,code,date_deb, date_fin from Reservations")
     codes=cur.fetchall()
     connection.close()
-    return [(code['id_velo'],code['code'], code['date_deb']) for code in codes]
+    return [(code['id_velo'],code['code'], code['date_deb'], code['date_fin']) for code in codes]
 
 def tableau_de_bord(id_membre):
     connection = sqlite3.connect('db/BDD_Velos.db')
